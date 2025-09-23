@@ -1,0 +1,27 @@
+body {
+  background-image: url('./fondo_principal.png');
+   background-size: 100% 100%; /* Cubre toda la pantalla */
+   background-position: center; /* Centra la imagen */
+   background-repeat: no-repeat; /* Evita que se repita */
+   background-attachment: fixed; /* Fija la imagen al hacer scroll */
+     
+}
+
+h1 {
+
+    color: #333; /* Color del texto */
+    font-family: 'Georgia', 'Times New Roman', serif; /* Tipo de letra */
+    font-size: 2.5rem; /* Tamaño de fuente */
+    font-weight: normal; /* Grosor (negrita) */
+    text-align: center; /* Alineación */
+     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    border-bottom: 2px solid #3a0949;
+    padding-bottom: 10px;
+    margin: 30px 0;
+    margin: 100px 0; /* Márgenes exterior */
+    padding: 10px; /* Espaciado interior */
+    
+}
+
+
+    

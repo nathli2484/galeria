@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de QR - Galería</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2575fc;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        p {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .url-display {
+            background: #f1f8ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            word-break: break-all;
+            font-size: 1rem;
+            border: 1px dashed #2575fc;
+        }
+        
+        .qr-container {
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        #qrcode {
+            padding: 15px;
+            background: white;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+        }
+        
+        .new-btn {
+            background: #f1f8ff;
+            color: #2575fc;
+            border: 2px solid #2575fc;
+        }
+        
+        .new-btn:hover {
+            background: #2575fc;
+            color: white;
+        }
+        
+        .instructions {
+            margin-top: 40px;
+            text-align: left;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #2575fc;
+        }
+        
+        .instructions h3 {
+            color: #2575fc;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generador de Código QR</h1>
+        <p>Se ha generado un código QR para la siguiente dirección web:</p>
+        
+        <div class="url-display">https://nathli2484.github.io/galeria/</div>
+        
+        <div class="qr-container">
+            <div id="qrcode"></div>
+        </div>
+        
+        <div class="buttons">
+            <button class="download-btn" onclick="downloadQR()">Descargar QR</button>
+            <button class="new-btn" onclick="window.location.href='https://nathli2484.github.io/galeria/'">Visitar Galería</button>
+        </div>
+        
+        <div class="instructions">
+            <h3>¿Cómo usar el código QR?</h3>
+            <ol>
+                <li>Imprime el código QR o guárdalo en tu dispositivo</li>
+                <li>Abre la aplicación de cámara o un escáner de QR en tu teléfono</li>
+                <li>Enfoca el código QR con la cámara de tu dispositivo</li>
+                <li>Sigue el enlace que aparecerá en pantalla para acceder a la galería</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Generar el código QR
+        const qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "https://nathli2484.github.io/galeria/",
+            width: 200,
+            height: 200,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+        
+        // Función para descargar el código QR
+        function downloadQR() {
+            const canvas = document.querySelector("#qrcode canvas");
+            if (!canvas) return;
+            
+            const url = canvas.toDataURL("image/png");
+            const link = document.createElement("a");
+            link.download = "qr-galeria.png";
+            link.href = url;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
